@@ -1,0 +1,165 @@
+/* general syles and login/signup buttons*/
+body {
+    background-color: #646464;
+    font-family: 'Jura', sans-serif;
+  }
+  .top-bar {
+    background-color: #009B7F;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;
+  }
+  .login-container {
+    margin: 0 auto;
+    margin-top: 50px;
+    max-width: 400px;
+    background-color: #D9D9D9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  }
+  .btn-primary {
+    background-color: #009B7F;
+    border-color: #009B7F;
+  }
+  .btn-primary:hover {
+    background-color: #007f63;
+    border-color: #007f63;
+  }
+  .login-text {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+ 
+/* new post page */
+  .form-container {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+    color: #000000;
+  }
+  label {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #009B7F;
+  }
+  textarea {
+    height: 200px;
+  }
+  .navbar {
+    background-color: #007062;
+    color: #FFFFFF;
+  }
+  .navbar a {
+    color: #FFFFFF;
+  }
+  .navbar a:hover {
+    color: #000000;
+  }
+  .homenavbar{
+      padding-right: 3vw;
+  }
+/* home */
+/* Navbar */
+.navbar-brand {
+    font-family: 'Jura', sans-serif;
+    font-size: 30px;
+    color: #FFF;
+    margin-left: 15px;
+  }
+  
+  .navbar-nav li a {
+    font-size: 18px;
+    color: #FFF;
+    padding: 15px;
+  }
+  
+  .navbar-nav li a:hover {
+    color: #007062;
+  }
+  
+  /* Sort By */
+  .col-md-3 h4 {
+    font-family: 'Jura', sans-serif;
+    font-size: 20px;
+  }
+  
+  .col-md-3 button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    color: #007062;
+    border-color: #007062;
+  }
+  
+  .col-md-3 button:hover {
+    background-color: #007062;
+    color: #007062
+  }
+
+    .post-content p {
+        margin-bottom: 0;
+      }
+      
+      .post-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+      
+      .post-footer span {
+        font-size: 14px;
+        color: #777777;
+        margin-right: 10px;
+      }
+      
+      .post-footer button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        color: #777777;
+        font-size: 14px;
+      }
+      
+      .post-footer button:hover {
+        text-decoration: underline;
+      }
+      
+      .categories {
+        background-color: #f2f2f2;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 5px;
+      }
+      
+      .categories h3 {
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      
+      .categories ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .categories li {
+        margin-bottom: 10px;
+      }
+      
+      .categories a {
+        color: #333333;
+        text-decoration: none;
+      }
+      
+      .categories a:hover {
+        text-decoration: underline;
+      }
+        

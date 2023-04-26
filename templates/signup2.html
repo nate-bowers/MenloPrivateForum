@@ -1,0 +1,45 @@
+{% set active_page = "signup" %}
+{% extends "base.html" %}
+
+{% block title %}Sign up{%endblock%}
+{% block content %}
+<br><br><br><br>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="login-container">
+          <h2 class="login-text">Sign Up</h2>
+          <form>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+              <label for="confirm-password">Confirm Password</label>
+              <input type="password" class="form-control" id="confirm-password" placeholder="Confirm password">
+            </div>
+            <div class="form-group">
+                <label for="secretkey">Key</label>
+                <input type="password" class="form-control" id="secretkey" placeholder="Key">
+              </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+          </form>
+          <div class="login-link">
+            {% with messages = get_flashed_messages() %}
+                {%if messages %}
+                    {%for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor%}
+                {%endif%}
+            {% endwith %}
+            Already have an account? <a href="/login">Log in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endblock%}

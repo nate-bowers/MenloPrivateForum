@@ -1,0 +1,77 @@
+{% set active_page = "login" %}
+{% extends "base.html" %}
+
+{% block title %}Login{%endblock%}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand homenavbar" href="/home">Home</a>
+
+      <a class="navbar-brand" href="/newpost">New Post</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item ml-auto">
+            <a class="navbar-brand" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 sortby">
+            <h4>Sort By:</h4>
+            <br>
+            <button class="btn btn-default">Most Recent</button>
+            <br>
+            <button class="btn btn-default">Popular</button>
+          </div>
+          <div class="col-md-8">
+            <div class="post">
+                <h2 class="post-title">Lorem Ipsum</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <p class="post-info">Posted by John Doe | 2 hours ago</p>
+                    <p class="post-stats">100 upvotes | 50 views</p>
+                    <button class="post-report-btn">Report</button>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="post-content">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut eleifend urna. Aliquam faucibus, urna a tristique rutrum, risus ex faucibus turpis, sit amet pulvinar orci ipsum in libero. Donec eu felis ut turpis interdum pellentesque. Fusce vel tincidunt nisl. Aenean in purus vel risus feugiat hendrerit.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="post">
+                <h2 class="post-title">Lorem Ipsum</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <p class="post-info">Posted by John Doe | 2 hours ago</p>
+                    <p class="post-stats">100 upvotes | 50 views</p>
+                    <button class="post-report-btn">Report</button>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="post-content">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut eleifend urna. Aliquam faucibus, urna a tristique rutrum, risus ex faucibus turpis, sit amet pulvinar orci ipsum in libero. Donec eu felis ut turpis interdum pellentesque. Fusce vel tincidunt nisl. Aenean in purus vel risus feugiat hendrerit.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="categories col-md-2">
+            <h3>Categories</h3>
+            <ul>
+              <li><a href="#">Technology</a></li>
+              <li><a href="#">Science</a></li>
+              <li><a href="#">Politics</a></li>
+              <li><a href="#">Sports</a></li>
+              <li><a href="#">Entertainment</a></li>
+            </ul>
+          </div>
+        </div>
+        </div> 
+        <hr>
+      </div> <!-- /container -->
+    </div>
+    {%endblock%}
+    
