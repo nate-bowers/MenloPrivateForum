@@ -1,44 +1,43 @@
-{% set active_page = "login" %}
+{% set active_page = "newpost" %}
 {% extends "base.html" %}
 
 {% block title %}Login{%endblock%}
 {% block content %}
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand homenavbar" href="/home">Home</a>
-
-          <a class="navbar-brand" href="/newpost">New Post</a>
-          <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav">
-              <li class="nav-item ml-auto">
-                <a class="navbar-brand" href="#">Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand homenavbar nav-left-buttons" href="/home">Home</a>
+      <a class="navbar-brand nav-left-buttons mr-auto" href="/newpost">New Post</a>
+      <div class=" justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item ml-auto">
+            <a class="navbar-brand" href="/logout">Logout {{u}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
         <div class="form-container">
-          <form>
+          <form method="POST">
             <div class="form-group">
               <label for="post-title">Post Title</label>
-              <input type="text" class="form-control" id="post-title" placeholder="Enter post title">
+              <input type="text" class="form-control" name="post-title" id="post-title" placeholder="Enter post title">
             </div>
             <div class="form-group">
               <label for="post-topic">Select Topic</label>
-              <select class="form-control" id="post-topic">
-                <option value="Topic 1">Topic 1</option>
-                <option value="Topic 2">Topic 2</option>
-                <option value="Topic 3">Topic 3</option>
-                <option value="Topic 4">Topic 4</option>
-                <option value="Topic 5">Topic 5</option>
+              <select name="post-topic" class="form-control" id="post-topic">
+                <option value="academics">Academics</option>
+                <option value="social">Social</option>
+                <option value="teachers">Teachers</option>
+                <option value="athletics">Athletics</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div class="form-group">
               <label for="post-content">Post Content</label>
-              <textarea class="form-control" id="post-content" rows="6" placeholder="Enter post content"></textarea>
+              <textarea name="post-content" class="form-control" id="post-content" rows="6" placeholder="Enter post content"></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Post</button>
           </form>
