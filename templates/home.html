@@ -10,7 +10,7 @@
       <div class=" justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item ml-auto">
-            <a class="navbar-brand" href="/logout">Logout {{u}}</a>
+            <a class="navbar-brand" href="/logout">Logout {{u.username}}</a>
           </li>
         </ul>
       </div>
@@ -45,10 +45,15 @@
                             <p class="post-info">Posted by {{ post.user_id }}</p>
                             <p>{{ post.time }}</p>
                             <p class="post-stats">{{ post.upvotes|length }} upvotes</p>
-                            <form method="POST" action="/upvote">
-                                <input type="hidden" value="{{ post.id }}" name="post-id">
-                                <button type="submit" class="btn btn-primary upvote-btn">Upvote</button>
-                            </form> 
+                            <!--a list of users that have upvoted a post-->
+                            {%if u in post.upvoters%} 
+                                <button type="submit" class="btn btn-primary disabled-submit-button">Upvote</button>
+                            {%else%}
+                                <form method="POST" action="/upvote">
+                                    <input type="hidden" value="{{ post.id }}" name="post-id">
+                                    <button type="submit" class="btn btn-primary upvote-btn">Upvote</button>
+                                </form>
+                            {%endif%}
                         </div>
                         <div class="col-md-8">
                             <div class="post-content">

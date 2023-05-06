@@ -11,6 +11,7 @@ class User(Base):
     # Columns
     username = Column("username", TEXT, primary_key=True)
     password = Column("password", TEXT, nullable=False)
+    upvotes = relationship("Upvote", back_populates="user")
 
     # Constructor
     def __init__(self, username, password):
@@ -29,6 +30,7 @@ class Post(Base):
     id = Column("id", INTEGER, primary_key=True, autoincrement=True)
     time = Column("time", TEXT, nullable=False)
     upvotes = relationship("Upvote", back_populates="post")
+    upvoters = relationship("User", secondary="upvotes", primaryjoin="Post.id == Upvote.post_id", secondaryjoin="User.username == Upvote.upvoter_username", backref="upvoted_posts")
 
     # Constructor
     def __init__(self, title, topic, content, user_id):
@@ -40,14 +42,16 @@ class Post(Base):
         self.time = datetime.now()
 
 class Upvote(Base):
-    __tablename__ = "upvotes"
+    __tablename__ = 'upvotes'
 
-    post_id = Column("post_id", INTEGER, ForeignKey('posts.id'))
-    upvoter_username = Column("upvoter_username", TEXT, ForeignKey('users.username'))
-    id = Column("id", INTEGER, primary_key=True, autoincrement=True)
-    post = relationship("Post", back_populates="upvotes")
+    post_id = Column(INTEGER, ForeignKey('posts.id'))
+    upvoter_username = Column(TEXT, ForeignKey('users.username'))
+    id = Column(INTEGER, primary_key=True)
 
-    def __init__(self, post_id, upvoter_username):
-        self.post_id=post_id
-        self.upvoter_username=upvoter_username
+    post = relationship('Post', back_populates='upvotes')
+    user = relationship('User', back_populates='upvotes')
+
+    def __init__(self, post=None, user=None):
+        self.post_id = post
+        self.upvoter_username = user
         

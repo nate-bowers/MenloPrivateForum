@@ -46,7 +46,7 @@ font-weight: bold;
 }
 .form-control:focus {
 box-shadow: none;
-border-color: #009B7F;
+/*border-color: #009B7F;*/
 }
 textarea {
 height: 200px;
@@ -59,7 +59,6 @@ color: #FFFFFF;
 .navbar a {
 color: #FFFFFF;
 display: inline-block;
-border: 1px solid black;
 padding: 2px 4px;
 border-radius: 5px;
 }
@@ -159,6 +158,10 @@ text-decoration: underline;
 
 .post-report-btn {
     border:#212529 2px solid;
+}
+.disabled-submit-button{
+    background-color: #bd0013;
+    border-color: black;
 }
 
 /*catagories box*/
