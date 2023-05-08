@@ -11,21 +11,16 @@ app.secret_key = "y5T79tFS8HhEdQxcJg=="
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method=="GET":
-        #db_session.query(Post).delete()
-        #db_session.commit()
         count_users=db_session.query(User).count()
         return render_template('signup2.html', count_users=count_users)
     elif request.method == "POST":
         password = request.form["password"]
         username = request.form["username"]
         confirmpassword = request.form["confirm-password"]
-        key = request.form["secretkey"]
         
         #if passwords match and if username not already taken, add user to db and log them in
         if password == confirmpassword:
-            
             if len(db_session.query(User).where(username == User.username).all()) == 0:
-             
                 temp = User(username,password)
                 db_session.add(temp)
                 db_session.commit()
@@ -49,7 +44,7 @@ def login():
         count_users=db_session.query(User).count()
         return render_template("login2.html", count_users=count_users)
     elif request.method == "POST":
-        #check if credentials are valid
+        #check if credentials are valid then redirect to home
         password = request.form["password"]
         username = request.form["username"]
         users = db_session.query(User).where((username == User.username) & (password ==User.password)).all()
@@ -71,6 +66,7 @@ def newpost():
             logged_in_user=db_session.query(User).where(User.username == session["username"]).first()
             return render_template("newpost.html", count_users=count_users,u=logged_in_user)
         elif request.method == "POST":
+            #create and add post to database then redirect use to homepage
             topic = request.form["post-topic"]
             title = request.form["post-title"]
             content = request.form["post-content"]
@@ -104,6 +100,7 @@ def logout():
     count_users=db_session.query(User).count()
     return redirect(url_for("login", count_users=count_users))
 
+#Post sorting functions
 @app.route('/home/recent')
 def recent():
     posts = db_session.query(Post).order_by(Post.time.desc()).all()
@@ -155,10 +152,11 @@ def other():
 
 @app.route('/upvote', methods=['POST'])
 def upvote():
+    #save where on the page the user was for later use
+    #check if user has already upvoted post
     post_id = request.form['post-id']
     anchor_input="post"+post_id
     already_exist = db_session.query(Upvote).where((Upvote.post_id == post_id) & (Upvote.upvoter_username==session["username"])).all()
-
     if len(already_exist)==0:
         upvote = Upvote(post_id, session["username"])
         db_session.add(upvote)

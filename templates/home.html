@@ -45,7 +45,7 @@
                             <p class="post-info">Posted by {{ post.user_id }}</p>
                             <p>{{ post.time }}</p>
                             <p class="post-stats">{{ post.upvotes|length }} upvotes</p>
-                            <!--a list of users that have upvoted a post-->
+                            <!--print upvote button red if user has already upvoted that post-->
                             {%if u in post.upvoters%} 
                                 <button type="submit" class="btn btn-primary disabled-submit-button">Upvote</button>
                             {%else%}
