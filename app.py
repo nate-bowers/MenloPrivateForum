@@ -1,3 +1,13 @@
+""" 
+Version 1 of Menlo student forums website
+includes front and back end of
+users, posting, sorting, and upvoting
+created for ATCS final project
+
+Created by: Nate Bowers
+Date: 05/09/2023
+"""
+
 from flask import *
 from database import init_db, db_session
 from models import *

@@ -29,7 +29,7 @@ class Post(Base):
     id = Column("id", INTEGER, primary_key=True, autoincrement=True)
     time = Column("time", TEXT, nullable=False)
     #a post has a list of its upvoted and the users that have upvoted it
-    upvotes = relationship("Upvote", back_populates="post")
+    upvotes = relationship("Upvote", back_populates="post",overlaps="upvotes")
     upvoters = relationship("User", secondary="upvotes", primaryjoin="Post.id == Upvote.post_id", secondaryjoin="User.username == Upvote.upvoter_username", backref="upvoted_posts")
 
     # Constructor
