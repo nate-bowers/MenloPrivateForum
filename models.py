@@ -1,5 +1,6 @@
 from sqlalchemy import ForeignKey, Column, INTEGER, TEXT
 from sqlalchemy.orm import relationship
+from sqlalchemy.orm import backref
 from database import Base
 from datetime import datetime
 
@@ -30,7 +31,12 @@ class Post(Base):
     time = Column("time", TEXT, nullable=False)
     #a post has a list of its upvoted and the users that have upvoted it
     upvotes = relationship("Upvote", back_populates="post",overlaps="upvotes")
-    upvoters = relationship("User", secondary="upvotes", primaryjoin="Post.id == Upvote.post_id", secondaryjoin="User.username == Upvote.upvoter_username", backref="upvoted_posts")
+    upvoters = relationship("User", secondary="upvotes", primaryjoin="Post.id == Upvote.post_id", secondaryjoin="User.username == Upvote.upvoter_username", backref=backref("upvoted_posts", lazy="dynamic"),
+    )
+
+    @property
+    def upvoted_usernames(self):
+        return [user.username for user in self.upvoters]
 
     # Constructor
     def __init__(self, title, topic, content, user_id):
@@ -49,7 +55,7 @@ class Upvote(Base):
 
     #An upvote has access to the users who upvoted it and the post that is upvoted
     post = relationship('Post', back_populates='upvotes')
-    user = relationship('User', back_populates='upvotes')
+    user = relationship('User', back_populates='upvotes', overlaps="upvoted_posts,upvoters")
 
     def __init__(self, post=None, user=None):
         self.post_id = post
