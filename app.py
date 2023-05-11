@@ -36,6 +36,7 @@ def signup():
                 db_session.commit()
                 session["username"]=username
                 session['count_users'] = db_session.query(User).count()
+                session["page"]="home"
                 return redirect(url_for("home"))
             else:
                 session['count_users'] = db_session.query(User).count()
@@ -60,6 +61,7 @@ def login():
         if len(users)==1:
             session["username"]=username
             session['count_users'] = db_session.query(User).count()
+            session["page"]="home"
             return redirect(url_for('home'))
         else:
             flash("incorrect username or password", "error")
@@ -83,7 +85,7 @@ def newpost():
             db_session.commit()
             flash("Post successfully uploaded")
             session['count_users'] = db_session.query(User).count()
-            
+            session["page"]="home"
             return redirect(url_for("home"))
     else:
         flash("You need to log in")
@@ -95,7 +97,7 @@ def home():
     if "username" in session:
         posts = db_session.query(Post).order_by(Post.time.desc()).all()
         session['count_users'] = db_session.query(User).count()
-        
+        session["page"]="home"
         return render_template("home.html",posts=posts)
     else:
         flash("You need to log in")
@@ -113,49 +115,49 @@ def logout():
 def recent():
     posts = db_session.query(Post).order_by(Post.time.desc()).all()
     session['count_users'] = db_session.query(User).count()
-    
+    session["page"]="recent"
     return render_template("home.html", posts=posts)
 
 @app.route('/home/popular')
 def popular():
     posts = db_session.query(Post).join(Upvote).group_by(Post).order_by(func.count(Upvote.post_id).desc()).all()
     session['count_users'] = db_session.query(User).count()
-    
+    session["page"]="popular"
     return render_template("home.html", posts=posts)
 
 @app.route('/home/academics')
 def academics():
     posts = db_session.query(Post).where(Post.topic =='academics').order_by(Post.time.desc()).all()
     session['count_users'] = db_session.query(User).count()
-    
+    session["page"]="academics"
     return render_template("home.html", posts=posts)
 
 @app.route('/home/social')
 def social():
     posts = db_session.query(Post).where(Post.topic =='social').order_by(Post.time.desc()).all()
     session['count_users'] = db_session.query(User).count()
-    
+    session["page"]="social"
     return render_template("home.html", posts=posts)
 
 @app.route('/home/teachers')
 def teachers():
     posts = db_session.query(Post).where(Post.topic =='teachers').order_by(Post.time.desc()).all()
     session['count_users'] = db_session.query(User).count()
-    
+    session["page"]="teachers"
     return render_template("home.html", posts=posts)
 
 @app.route('/home/athletics')
 def athletics():
     posts = db_session.query(Post).where(Post.topic =='athletics').order_by(Post.time.desc()).all()
     session['count_users'] = db_session.query(User).count()
-    
+    session["page"]="athletics"
     return render_template("home.html", posts=posts)
 
 @app.route('/home/other')
 def other():
     posts = db_session.query(Post).where(Post.topic =='other').order_by(Post.time.desc()).all()
     session['count_users'] = db_session.query(User).count()
-    
+    session["page"]="other"
     return render_template("home.html", posts=posts)
 
 @app.route('/upvote', methods=['POST'])
@@ -170,13 +172,12 @@ def upvote():
         db_session.add(upvote)
         db_session.commit()
         session['count_users'] = db_session.query(User).count()
-        
-        return redirect(url_for('home', _anchor=anchor_input))
+        return redirect(url_for(session["page"], _anchor=anchor_input))
     else:
         flash("You can only upvote a post once!", "error")
         session['count_users'] = db_session.query(User).count()
         
-        return redirect(url_for("home",_anchor=anchor_input))
+        return redirect(url_for(session["page"],_anchor=anchor_input))
 
 @app.before_first_request
 def setup():

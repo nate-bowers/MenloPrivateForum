@@ -31,8 +31,7 @@ class Post(Base):
     time = Column("time", TEXT, nullable=False)
     #a post has a list of its upvoted and the users that have upvoted it
     upvotes = relationship("Upvote", back_populates="post",overlaps="upvotes")
-    upvoters = relationship("User", secondary="upvotes", primaryjoin="Post.id == Upvote.post_id", secondaryjoin="User.username == Upvote.upvoter_username", backref=backref("upvoted_posts", lazy="dynamic"),
-    )
+    upvoters = relationship("User", secondary="upvotes", primaryjoin="Post.id == Upvote.post_id", secondaryjoin="User.username == Upvote.upvoter_username", backref=backref("upvoted_posts", lazy="dynamic"),)
 
     @property
     def upvoted_usernames(self):
